@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public GameObject playButton;
     public GameObject gameOver;
+    public GameObject exitGame;
     public Bird bird;
 	public Spawner spawner;
 
@@ -36,7 +37,10 @@ public class GameManager : MonoBehaviour
 		bird.enabled = true;
 		gameOver.SetActive(false);
 		playButton.SetActive(false);
-        spawner.UpdateDifficulty(1, -0.5f, 0.5f);
+		exitGame.SetActive(false);
+
+
+		spawner.UpdateDifficulty(1, -0.5f, 0.5f);
 
         Time.timeScale = 1.0f;
 
@@ -54,8 +58,9 @@ public class GameManager : MonoBehaviour
 	public void GameOver() {
         gameOver.SetActive(true);
         playButton.SetActive(true);
+		exitGame.SetActive(true);
 
-        Pause();
+		Pause();
     }
     public void IncreaseScore() {
         score++;
@@ -69,4 +74,9 @@ public class GameManager : MonoBehaviour
 			spawner.UpdateDifficulty(newSpawnRate, newMinHeight, newMaxHeight);
 		}
 	}
+    
+    public void ExitGame() {
+        Debug.Log("game is quit");
+        Application.Quit();
+    }
 }

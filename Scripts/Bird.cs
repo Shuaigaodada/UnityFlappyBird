@@ -31,13 +31,15 @@ public class Bird : MonoBehaviour
 		transform.position += direction * Time.deltaTime;
 
 		float currentAngle = transform.eulerAngles.z;
-		if (currentAngle > 180) currentAngle -= 360;
+		if(currentAngle > 180) currentAngle -= 360;
 
 		float targetAngle = direction.y > 0 ? this.rotateDegrees : -this.rotateDegrees;
 		float angle = Mathf.Lerp(currentAngle, targetAngle, Time.deltaTime * rotateSpeed);
 		transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-
+		if(transform.position.y >= 4.75) {
+			transform.position = new Vector3(transform.position.x, 4.75f, transform.position.z);
+		}
 	}
 
 	private void OnEnable()
