@@ -25,11 +25,9 @@ public class GameManager : MonoBehaviour
     }
     private static GameManager _instance;
 
-	private void Awake()
-	{
+    private void Awake() {
 		Application.targetFrameRate = 144;
-
-        Pause();
+		Pause();
 	}
 
     public void Play() {
@@ -48,8 +46,7 @@ public class GameManager : MonoBehaviour
             Destroy(pipes[i].gameObject);
         }
     }
-    public void Pause()
-    {
+    public void Pause() {
         Time.timeScale = 0f;
         bird.enabled = false;
     }
@@ -63,11 +60,11 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore() {
         score++;
 		scoreText.text = score.ToString();
-		if (score % 10 == 0) // Ã¿µ±·ÖÊı´ïµ½10µÄ±¶ÊıÊ±Ôö¼ÓÄÑ¶È
+		if (score % 10 == 0) // æ¯å½“åˆ†æ•°è¾¾åˆ°10çš„å€æ•°æ—¶å¢åŠ éš¾åº¦
 		{
-			float newSpawnRate = Mathf.Lerp(1f, 1.5f, score / 100f); // Öğ½¥Ôö¼ÓÉú³ÉÂÊ
-			float newMinHeight = Mathf.Lerp(-0.5f, -3f, score / 100f); // Öğ½¥½µµÍ×îĞ¡¸ß¶È
-			float newMaxHeight = Mathf.Lerp(0.5f, 4f, score / 100f); // Öğ½¥Ìá¸ß×î´ó¸ß¶È
+			float newSpawnRate = Mathf.Lerp(1f, 1.5f, score / 100f); // é€æ¸å¢åŠ ç”Ÿæˆç‡
+			float newMinHeight = Mathf.Lerp(-0.5f, -3f, score / 100f); // é€æ¸é™ä½æœ€å°é«˜åº¦
+			float newMaxHeight = Mathf.Lerp(0.5f, 4f, score / 100f); // é€æ¸æé«˜æœ€å¤§é«˜åº¦
 
 			spawner.UpdateDifficulty(newSpawnRate, newMinHeight, newMaxHeight);
 		}
