@@ -39,17 +39,14 @@ public class GameManager : MonoBehaviour
 		playButton.SetActive(false);
 		exitGame.SetActive(false);
 
-
-		spawner.UpdateDifficulty(1, -0.5f, 0.5f);
-
+		spawner.UpdateDifficulty(1, -0.5f, 1f);
         Time.timeScale = 1.0f;
-
         Pipes[] pipes = FindObjectsOfType<Pipes>();
-
         for(int i = 0; i < pipes.Length; i++) {
             Destroy(pipes[i].gameObject);
         }
     }
+
     public void Pause() {
         Time.timeScale = 0f;
         bird.enabled = false;
@@ -67,9 +64,9 @@ public class GameManager : MonoBehaviour
 		scoreText.text = score.ToString();
 		if (score % 10 == 0) // 每当分数达到10的倍数时增加难度
 		{
-			float newSpawnRate = Mathf.Lerp(1f, 1.5f, score / 100f); // 逐渐增加生成率
+			float newSpawnRate = Mathf.Lerp(1f, 1.35f, score / 100f); // 逐渐增加生成率
 			float newMinHeight = Mathf.Lerp(-0.5f, -3f, score / 100f); // 逐渐降低最小高度
-			float newMaxHeight = Mathf.Lerp(0.5f, 4f, score / 100f); // 逐渐提高最大高度
+			float newMaxHeight = Mathf.Lerp(1f, 4f, score / 100f); // 逐渐提高最大高度
 
 			spawner.UpdateDifficulty(newSpawnRate, newMinHeight, newMaxHeight);
 		}
