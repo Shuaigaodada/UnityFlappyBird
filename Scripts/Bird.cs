@@ -39,6 +39,7 @@ public class Bird : MonoBehaviour
 
 		if(transform.position.y >= 4.75) {
 			transform.position = new Vector3(transform.position.x, 4.75f, transform.position.z);
+   			transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Lerp(transform.eulerAngles.z, 0, Time.deltaTime * rotateSpeed)));
 		}
 	}
 
